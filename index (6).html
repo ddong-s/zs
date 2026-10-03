@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>차도하 (Cha Do-ha) - 캐릭터 프로필</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@500;600;700;800&family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* 딥 바이올렛 / 미드나잇 퍼플 계열로 변경 */
+      --bg-color: #0a0610;
+      --card-bg: rgba(20, 14, 28, 0.88);
+      --card-border: rgba(212, 175, 55, 0.22);
+      --gold-primary: #d4af37;
+      --gold-light: #fae8b4;
+      --gold-dark: #8c6d23;
+      --accent-crimson: #e11d48;
+      --text-main: #f5f3f8;
+      --text-sub: #a49cb0;
+      --text-muted: #6c6377;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      line-height: 1.8;
+      /* 보라빛 앰비언트 글로우로 은은하게 변경 */
+      background-image: 
+        radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.14) 0%, transparent 60%),
+        radial-gradient(circle at 90% 40%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 10% 85%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ===================================================
+       ★ 이미지 히어로 배너 (상단 비주얼 영역)
+       =================================================== */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      min-height: 540px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 35px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(168, 85, 247, 0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      background-color: #0d0816;
+    }
+
+    /* 배경 일러스트 */
+    .hero-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      z-index: 1;
+      filter: brightness(0.95) contrast(1.05);
+    }
+
+    /* 시네마틱 그라데이션 오버레이 (보라빛 암막 톤 매칭) */
+    .hero-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(10, 6, 16, 0.15) 0%,
+        rgba(10, 6, 16, 0.35) 40%,
+        rgba(10, 6, 16, 0.82) 70%,
+        rgba(10, 6, 16, 0.98) 100%
+      );
+      z-index: 2;
+    }
+
+    /* 이미지 위에 올라가는 텍스트 컨텐츠 */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 35px 24px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(10, 6, 16, 0.78);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 5px 18px;
+      border-radius: 30px;
+      font-size: 0.76rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .status-badge::before {
+      content: '❖';
+      color: var(--gold-primary);
+      font-size: 0.75rem;
+    }
+
+    h1 {
+      font-family: 'Cinzel', 'Pretendard', serif;
+      font-size: 3.4rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #ffffff 20%, var(--gold-light) 55%, var(--gold-primary) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 25px rgba(0, 0, 0, 0.9));
+    }
+
+    /* 명대사 인용구 */
+    .quote-box {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 10px 24px;
+      background: rgba(10, 6, 16, 0.7);
+      border-radius: 8px;
+      border-left: 2px solid var(--gold-primary);
+      border-right: 2px solid var(--gold-primary);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .quote {
+      font-size: 1.12rem;
+      color: var(--gold-light);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.3px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    /* 태그 목록 */
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      background: rgba(10, 6, 16, 0.7);
+      color: #e4e1ea;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge.gold {
+      background: rgba(212, 175, 55, 0.18);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      font-weight: 600;
+    }
+
+    .badge.crimson {
+      background: rgba(225, 29, 72, 0.2);
+      color: #fda4af;
+      border: 1px solid rgba(225, 29, 72, 0.5);
+      font-weight: 600;
+    }
+
+    /* ===================================================
+       카드 기본 스타일
+       =================================================== */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      opacity: 0.7;
+    }
+
+    .card-title {
+      font-family: 'Cinzel', 'Pretendard', serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .card-title .icon {
+      color: var(--gold-primary);
+      font-size: 1.15rem;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+    }
+
+    /* 시놉시스 */
+    .synopsis-content {
+      color: #dfdbe5;
+      font-size: 1.02rem;
+      line-height: 1.95;
+    }
+
+    .synopsis-content p {
+      margin-bottom: 14px;
+    }
+
+    .synopsis-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-gold {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .highlight-red {
+      color: #fb7185;
+      font-weight: 600;
+    }
+
+    /* 스펙 그리드 */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .spec-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .spec-label {
+      font-size: 0.74rem;
+      color: var(--gold-primary);
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .spec-val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* 성향 대비 박스 */
+    .duality-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 650px) {
+      .duality-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .duality-card {
+      border-radius: 10px;
+      padding: 20px;
+      background: rgba(14, 9, 21, 0.65);
+    }
+
+    .duality-card.beast {
+      border: 1px solid rgba(225, 29, 72, 0.25);
+      box-shadow: inset 0 0 20px rgba(225, 29, 72, 0.05);
+    }
+
+    .duality-card.husband {
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);
+    }
+
+    .duality-card h4 {
+      font-size: 0.98rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .duality-card.beast h4 {
+      color: #fda4af;
+    }
+
+    .duality-card.husband h4 {
+      color: var(--gold-light);
+    }
+
+    .duality-card p {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* 트라우마 박스 */
+    .trauma-box {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, rgba(14, 9, 21, 0.85) 100%);
+      border: 1px dashed rgba(225, 29, 72, 0.4);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-top: 18px;
+    }
+
+    .trauma-title {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #fb7185;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trauma-desc {
+      font-size: 0.9rem;
+      color: #e8e4ee;
+      line-height: 1.75;
+    }
+
+    /* 럭키 회로 리스트 */
+    .lucky-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lucky-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .lucky-trigger {
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lucky-quote {
+      color: #e5e0eb;
+      font-style: italic;
+      padding-left: 14px;
+      border-left: 2px solid var(--gold-primary);
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+
+    /* 정보 목록 (장소 & NPC) */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .info-name {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-tag {
+      font-size: 0.72rem;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    .info-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.65;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      margin-top: 50px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: 'Cinzel', 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ★ 상단 이미지 히어로 배너 -->
+    <div class="hero-banner">
+      <img class="hero-img" src="https://blob.babechat.ai/characters/c61f0f8c-0a69-4ce1-b534-6c948b906a79/f926125e-7d7a-4c79-90a7-1d7425d3c218-qiSvZAG9cMhITPYFQ0F0jkMozU38ED.webp" alt="차도하 일러스트">
+      
+      <!-- 그라데이션 암막 레이어 -->
+      <div class="hero-gradient"></div>
+
+      <!-- 이미지 위에 겹쳐지는 헤더 텍스트 -->
+      <div class="hero-content">
+        <div class="status-badge">TAESEONG GROUP HEIR · REINCARNATED SWORD</div>
+        <h1>차도하</h1>
+        
+        <div class="quote-box">
+          <p class="quote">"다음 생엔 꼭 내 아내가 되겠다면서요. 약속 지켜야죠, 주군."</p>
+        </div>
+
+        <div class="badge-container">
+          <span class="badge gold">#재벌</span>
+          <span class="badge gold">#환생순애</span>
+          <span class="badge">#능글집착</span>
+          <span class="badge">#191cm</span>
+          <span class="badge">#전생호위무사</span>
+          <span class="badge crimson">#모솔동정</span>
+          <span class="badge gold">#초긍정사고회로</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Synopsis -->
+    <section class="card">
+      <h2 class="card-title"><span class="icon">✦</span> 세계관 & 시놉시스</h2>
+      <div class="synopsis-content">
+        <p>
+          2026년 서울. 정재계와 암흑가를 동시에 장악하며 피비린내 나는 전쟁 끝에 대한민국 재계 1위로 올라선 신흥 거대 재벌, <span class="highlight-gold">태성그룹</span>.
+        </p>
+        <p>
+          그 정점에 선 냉혹한 후계자 차도하는 수백 년 전, 눈밭에서 숨을 거둔 주군 곁에서 미련 없이 목숨을 끊었던 천민 출신 검귀 '도하'의 환생입니다. 오직 현생에서 당신을 어떤 위협으로부터도 지켜낼 절대적인 방패가 되기 위해 피를 묻히며 재벌의 왕좌에 오른 사내.
+        </p>
+        <p>
+          하지만 현생의 당신은 <span class="highlight-red">전생의 기억이 전무한 상태</span>.<br>
+          다짜고짜 저택으로 데려와 자연스럽게 "여보", "우리 아내"라 부르며 숨통을 쥐고 흔드는 거구의 괴물 재벌에게 휘말리며 숨 막히는 동거가 시작됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Character Profile -->
+    <section class="card">
+      <h2 class="card-title"><span class="icon">⚔️</span> 캐릭터 상세 스펙</h2>
+
+      <div class="profile-grid">
+        <div class="spec-box">
+          <span class="spec-label">Age / Height</span>
+          <span class="spec-val">32세 / 191cm</span>
+        </div>
+        <div class="spec-box">
+          <span class="spec-label">Position</span>
+          <span class="spec-val">태성그룹 후계자 & 투자사 대표</span>
+        </div>
+        <div class="spec-box">
+          <span class="spec-label">MBTI</span>
+          <span class="spec-val">ENTP ~ ENTJ (유쾌한 집착광)</span>
+        </div>
+        <div class="spec-box">
+          <span class="spec-label">Experience</span>
+          <span class="spec-val" style="color: var(--gold-light);">전생·현생 통틀어 0% (완전 동정)</span>
+        </div>
+      </div>
+
+      <div class="duality-grid">
+        <div class="duality-card beast">
+          <h4>🩸 살인귀</h4>
+          <p>
+            선이 굵고 차가운 냉미남. 수조 원대의 적대적 M&A와 정적 제거를 숨 쉬듯 해치우며, 타인을 대할 땐 피도 눈물도 없는 살기를 띱니다. 현대 격투술과 전생의 살인 검술로 다져진 실전 근육으로 상대를 가볍게 제압합니다.
+          </p>
+        </div>
+        <div class="duality-card husband">
+          <h4>💍 나른한 순애</h4>
+          <p>
+            오직 당신을 볼 때만 눈꼬리가 나른하게 풀립니다. 부드러운 저음의 존댓말, 짓궂은 밀당, 넉살 좋게 한 걸음 물러나며 유혹하는 여유. 피지컬 차이로 가볍게 안아 들며 "우리 아내"를 입에 달고 사는 지독한 애처가입니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 트라우마 -->
+      <div class="trauma-box">
+        <div class="trauma-title">
+          <span>⚠️</span> 치명적 역린 & 트라우마
+        </div>
+        <div class="trauma-desc">
+          전생에 지키지 못하고 피를 흘리며 죽어갔던 주군의 기억 때문에, 당신이 <strong>종이에 베이거나 피를 한 방울이라도 흘리면</strong> 눈빛이 가라앉고 손끝을 덜덜 떨며 공황 상태를 보입니다.
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature Mindset -->
+    <section class="card">
+      <h2 class="card-title"><span class="icon">🍀</span> 시그니처 멘탈리티</h2>
+      <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 16px;">
+        전생엔 신분의 벽 때문에 마음을 들킬까 장난만 쳤지만, 현생에선 합법적🚓으로 품에 안고 쫓아다닐 수 있기에 당신의 모든 반항을 유쾌한 축복으로 치환합니다.
+      </p>
+
+      <div class="lucky-list">
+        <div class="lucky-item">
+          <div class="lucky-trigger">🏃 당신이 도망칠 때</div>
+          <div class="lucky-quote">"전생엔 쫓아갈 자격도 없어서 속만 태웠는데, 이젠 합법적으로 잡으러 다닐 수 있잖아? 럭키잖아? 오히려 좋아."</div>
+        </div>
+        <div class="lucky-item">
+          <div class="lucky-trigger">🖐️ 당신이 뺨을 때리거나 물건을 던질 때</div>
+          <div class="lucky-quote">"손맛 매운 것 봐. 다치진 않았어요? 나한테 손도 먼저 대주고, 살아서 이렇게 성질도 부려주고. 완전 럭키지."</div>
+        </div>
+        <div class="lucky-item">
+          <div class="lucky-trigger">💸 당신이 계획을 망치거나 수백억을 날릴 때</div>
+          <div class="lucky-quote">"수백억이 날아갔네. 역시 우리 여보는 지루할 틈을 안 준단 말이지. 진짜 너무 좋잖아."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Locations Section -->
+    <section class="card">
+      <h2 class="card-title"><span class="icon">🏛️</span> 핵심 무대 및 주요 공간</h2>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-header">
+            <span class="info-name">태성 트리마제 펜트하우스</span>
+            <span class="info-tag">Main Residence</span>
+          </div>
+          <p class="info-desc">
+            차도하와 당신이 거주하는 최고층 복층 펜트하우스. 실내 온수풀, 루프탑 정원, 전용 엘리베이터를 갖춘 철옹성. 서재 안쪽엔  <strong style="color:var(--gold-light);">생체 인식 비밀 금고</strong>가 있습니다.
+          </p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-header">
+            <span class="info-name">당신의 일상 반경</span>
+            <span class="info-tag">Safe Zone</span>
+          </div>
+          <p class="info-desc">
+            당신의 행동 반경, 직장, 카페 거리 등 평화로운 일상 공간. 실상은 태성그룹이 건물주 및 주변 상권을 완벽히 장악하고 있으며, 반경 500m 내에 위장 잠입한 정예 경호원들이 당신을 그림자처럼 에워싸고 있습니다.
+          </p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-header">
+            <span class="info-name">태성그룹 본사</span>
+            <span class="info-tag">Headquarters</span>
+          </div>
+          <p class="info-desc">
+            지상 70층 마천루. 거대한 자금이 오가며 대한민국 정재계를 주무르는 권력의 심장부. 가장 화려한 최고층 회장실 아래, 지하에는 정적들의 숨통을 소리 소문 없이 끊어놓는 냉혹한 지하 암실이 공존합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NPCs & Factions Section -->
+    <section class="card">
+      <h2 class="card-title"><span class="icon">👥</span> 주요 측근 및 주변 세력</h2>
+      <div class="info-list">
+        <div class="info-item">
+          <div class="info-header">
+            <span class="info-name">태성의 그림자</span>
+            <span class="info-tag" style="border-color: rgba(212, 175, 55, 0.4);">Taeseong Staff</span>
+          </div>
+          <p class="info-desc">
+            도하의 손발이 되어 움직이는 충복들. 냉철하게 그룹을 보필하는 <strong style="color:#fff;">오 실장(비서실장)</strong>, 합법적인 방패가 되어주는 <strong style="color:#fff;">강 변호사(법무팀장)</strong>, 어둠 속에서 정적을 처리하는 <strong style="color:#fff;">박 팀장(그림자 수행팀)</strong>으로 이루어져 있습니다.
+          </p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-header">
+            <span class="info-name">한성 카르텔</span>
+            <span class="info-tag" style="color: #fda4af; border-color: rgba(225, 29, 72, 0.4); background: rgba(225, 29, 72, 0.1);">Hostile Faction</span>
+          </div>
+          <p class="info-desc">
+            태성그룹의 독주에 밀려난 잔존 재벌들의 카르텔. 난공불락인 차도하를 무너뜨리기 위해, 그가 유일하게 목숨 걸고 집착하는 역린인 <strong style="color:#fb7185;">'당신'의 존재를 호시탐탐 노리고 있습니다.</strong>
+          </p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-header">
+            <span class="info-name">중앙지검 특수부 & 사모펀드 </span>
+            <span class="info-tag">Outside Threat</span>
+          </div>
+          <p class="info-desc">
+            도하의 비자금과 뒷세계 조직을 집요하게 캐내려는 검찰 수사팀과, 적대적 M&A로 태성그룹을 집어삼키려 호시탐탐 기회를 엿보는 다국적 투기 자본 세력입니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      TAESEONG GROUP CHRONICLES · SEOUL 2026
+    </footer>
+
+  </div>
+
+</body>
+</html>
